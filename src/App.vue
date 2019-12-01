@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav"  v-if="isLoggedIn">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/logout">Logout</router-link> |
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+  export default {
+    computed: {
+      isLoggedIn() {
+        return this.$store.state.authentication.status.loggedIn !== undefined;
+      }
+    }
+  };
+
+</script>
 
 <style>
 #app {

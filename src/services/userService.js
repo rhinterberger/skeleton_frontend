@@ -3,7 +3,8 @@ import { apiService as api } from './apiService';
 
 export const userService = {
     login,
-    logout
+    logout,
+    checkToken
 };
 
 async function login(username, password)
@@ -28,5 +29,10 @@ async function logout()
 {
     sessionStorage.removeItem('jwt');
     sessionStorage.removeItem('jwtKey');
+}
+
+async function checkToken()
+{
+    jwt.verify(sessionStorage.getItem("jwt"), sessionStorage.getItem('jwtKey'));
 }
 

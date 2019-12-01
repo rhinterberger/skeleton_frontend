@@ -18,6 +18,15 @@ export default {
         async logout({ commit }) {
             await userService.logout();
             await commit('logout');
+        },
+
+        async checkToken({commit}) {
+            try {
+                await userService.checkToken();
+            }
+            catch(e) {
+                await commit('logout');
+            }
         }
     },
     mutations: {
